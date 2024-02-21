@@ -1,0 +1,222 @@
+scenes are made up of shot
+
+Episode 6 of The Shot List
+
+
+camera movement
+
+static shot - no movement
+	commonly captured from a fixed position
+	dialogue, composition
+	suggest helplessness, ex: dinkirk, solomon lynching
+
+the pan - rotates the camera horizontally left or right but with fixed position
+	reveal information, frequently used by wes andersson
+	slow pan - builds anticipation
+	rapid pan - shows p
+	whip pan - amps up energy, whiplash
+		transition
+
+tilt - directs the camera upward or downward
+	verticality of a film's world
+	character dominance
+	or vulnerability
+	can reveal information, character, settings, or scale
+
+push-in - moves the camera toward a subject
+	emphasizing a moment
+	visual cue that this is important
+	external details such as object, or text
+	direct our attention to specific detail
+	captures a character's thought process
+	to communicate internal conflict
+
+pull-out 
+	deemphasizes the subject
+	disconnects the characters
+	unveils the content of the characters, scene
+	negative emotion, like isolation, abandonment
+
+zoom - not a movement, created in camera by changing focal length
+	reveal the context around the subject
+	unnatural
+	draws attention to specific detail
+	creates uneasiness
+	stanley kubrick mostly uses it, in shining, highlights jacks decent in to madness
+	fast zoom: crash zoom
+		often used for dramatic, comedic effect (quentin tarantino uses it in djanfo)
+
+Dolly zoom - utilizes both dolly movement and focal point zoom
+	dollying in and zooming out 
+		background grows in size, portrays conflict
+	dolluing out while zooming in
+		external conflict foreground dominant than background
+		bringing the audience closer
+	can convey both positive and negative psychological effect
+
+camera roll
+	used to match character movement in moments of oanic
+	or conflict
+	disconcerting, when villain assumes the throne, reversal of power
+
+tracking shot - physically moves the camera through the scene, follows a subject
+	move with a subject
+	done purposefully - what will happen when they get there or what the character doing
+	documentary style effect
+	draws attention to specific action
+	can be used for building tension, ex: elephant is filled with
+	dreadful anticipation of something bad
+
+trucking shot - camera moves laterally left or right
+	moonrise kingdom uses it
+	adds will of the film and character
+	can be engaging
+
+arc shot - camera movement orbits around the subject, usually horizontal arc, can also be vertical
+	adds dynamic movement whn character is standing still
+	bunch of heroes as a single unit
+	keeps us centralized in moments of intimacy, panic, or heroism
+	underscores the tension and panic in dark knight, only comes to stop when there's a solution
+	speed is amplified:
+		a dizzing effect showing character's mental state.
+
+Boom shot - moves camera up or down utilizing a crane, or other
+	large boom movements used to show characters movement
+	kubrick booms up to follow characters attempt, and moves down sho defeat
+
+Random movement - camera shakes, incidenetal zoom or any movement that happens on the fly
+	creates a documentary look
+	that events are happenning in real time when nothing is planned
+
+multiple camera movements can be combined
+	skywalker breaking wings of a fighter je
+
+
+---
+
+
+Editing transitions
+
+The cut - instant switch of transition of one shot to another or one scene to the nect
+
+Fade - original editing transition still used today, shot dissolved to or from a solid color
+	usually used at the beginning of the story to ease the viewers in
+	fade to black, gives a sense of close
+	fades in the middle is a end of chapter
+	sometimes fade in and out of scene directors
+	fade to white - commonly used to show character going into dream or dying
+	creates a sense of ambiguity in black swan
+
+Dissolve
+	black to fade uses gradual transition, directly into another shot
+	longer passage of a scene
+	way to signal a memory, or a dream
+	creates a hybrid moment between two scenes
+	superimposition 
+		when both scenes are shown simultenously
+		creates a comparison
+
+Match Cut - transition that uses elements of the previous scene to match the elements in the next
+	could be shapes, compositions, colors, momevemtn, or sound
+	connects two shots instantly
+	draws in similarity between scenes
+	matchcuting between faces usually refers to we're seeing the same person in different times
+	smooth cute
+		progression of time
+		match dissolves into other time of the same subject
+
+Iris
+	transition were a manual effect
+	outdated but still some modern cimea uses it
+	uses circular shape
+
+Wipe
+	when shot a moves swipes into shot b
+	mostly used in star wars francise
+	clock wipes, star wipes, old fashioned
+	wild and expressive visual
+	nowadays mostly used for comedic purposes
+
+passing or passby
+	uses a moving object as a transition to the next scene
+	edgar wright
+	often pairs with better sound design
+	often used to hide the cut or huyperstylized aesthetic
+
+Whip Pan - quick horizontal pan
+	sustain momentum from previous theme
+
+Smash cut
+	abrupt cut from one scene to another
+	quote and loud, between chaotic and still
+	typically used to shock the audience
+	when a character startles away from a dream
+	used for comedic effect as well
+
+J cut
+	audio from next scene with previous visual
+	memory or dialogue
+	creates a bridge
+
+L cut
+	sudio from preceding scene goes into following scene
+	used for narration
+	they create new context from sound and image
+
+---
+
+Episode 10 of the Shotlist
+Editing techniques
+
+what to show
+when to cut
+what to cut to
+
+cutaways
+	when another scnece is added to the main action
+
+Rule of six
+frantic action - rapid cut
+
+cutaways can be used to show what's on a character's minf
+
+Eyeline 
+	match when a editor cuts to character's POV
+	reveal what the charcter is seeing
+	mkes you think like character as their perspective
+	Insert
+		to show detail, emphasize a object or something important
+	what rthe character thinks, sees, or feels
+	create or release tension depending on what we see and when we see it
+
+Cross cutting
+	when an editor cuts between two scenes at the time
+	ironic juxtaposition to show simlutenous events
+	effective way of show multi-led actions
+
+Eye Trace
+	when editor cuts between two shots
+	guiding a viewer's eye within a shot
+	ideal ofor acton scene that goes quickly
+	madmax fury road uses it very often
+
+
+split Edit
+	either a jcut or lcut
+	j cut audio plays before we see it
+	L cute audio plays after the cutaway
+	often used in dialogue scene
+	L cut to show the plan of the characters as they're saying it
+
+Intellectual montage
+	seemingly unrelated images to 
+
+Cut on Action
+	shaking hands
+	to create smoother cuts to feel more natural
+	often found in fight scene
+	quick movement
+	cut on impace - gives each punch extra force
+
+Freexe frames
+jump cuts

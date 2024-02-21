@@ -1,0 +1,214 @@
+
+Instruction Set Architecture
+	interface between hardware and lowest-level software that contains all necessary information to write machine language program to the hardware
+
+Needs to specify
+	1. Opcode: which operation to perform
+	2. Source: Where to find the operand(s)
+	3. Destination: Where to put the result
+	4. Branch (optional): Where the next instruction is
+
+---
+
+CPU Steps for processing instructions
+
+1. Instruction Fetch
+	instructions are stored somewhere in memory
+	you need to fetch that from there
+
+2. Instruction Decode
+	separate the code and determine what value
+	is operand, opcode, destination etc.
+
+3. Operand Fetch
+	get the operand from memory
+
+4. Execute
+5. Result Store
+6. Next Insttruction
+
+---
+
+General ISA Classes
+
+1. Data Movement Instructions
+	mem to mem
+	mem to cpu
+	cpu to mem
+	const to cpu
+	cpu to output
+
+2. Arithmetic Logic Unit Instructions (ALU) * the ones we're using
+	Logic instruction
+	integer arithmetic
+	floating point arithmetic
+
+3. Branch (Control) Instructions
+	unconditional jumps
+	conditional branches
+
+---
+
+Mem-to-Mem Machines (Machine = ISA or CPU targeting a specific type of ISA):
+	4 address machine: 2 op, 1 reg, 1 next instruction
+	3 address machine: 
+	2 address machine: 
+
+Load-Store Machines: they only access register from ALU, not Mem.
+
+---
+
+Three address architecture:
+	op1, op2, resAddr
+
+	Instruction : ADD RES,OP1,OP2
+	RTN         : RES <- OP1 + OP2
+	Precise RTN : M[RES_ADDR] <- M[OP1_ADDR + M[OP2_ADDR]]
+	              PC <- PC + 10  \\ 10 being the size of instruction
+
+	Instruction Format:
+	8b  24b      24b      24b      = 80 bits or 10 Bytes
+	ADD RES_ADDR OP1_ADDR OP2_ADDR
+
+	Addresses are 24 bits (3 bytes) -> memory can hold 2^24 combinations -> so, memory size is 2^24 bits (16MB)
+
+
+Two addresses architecture
+	op1, op2/resAddr
+
+	Instruction : ADD OP1, OP2
+	RTN         : OP1 <- OP1 + OP2
+	Precise RTN : M[OP1_ADDR] <- M[OP1_ADDR] + M[OP2_ADDR]
+	              PC <- PC + 7
+
+	Instruction Format:
+	8b  24b      24b      = 56 bits or 7 Bytes
+	ADD OP2_ADDR OP1_ADDR
+
+	Addresses are 24b long -> memory can hold 2^24 combinations -> mem size is 16MB
+
+
+One address architecture
+	op1 (op2 is accumulator)
+
+	Instruction : ADD OP1
+	RTN         : ACC <- ACC + OP1
+	Precise RTN : ACC <- ACC + M[OP1_ADDR]
+	              PC <- PC + 4
+
+	Instruction Format:
+	8b  24b      = 32 bits or 4 Bytes
+	ADD OP1_ADDR
+
+	Addresses are 24b long -> Mem can hold 2^24 combinations -> mem size is 16MB
+
+---
+
+2^10 = Kilobyte
+2^20 = Megabyte
+2^30 = Gigabyte
+
+We know 2^24 is 16 MB because:
+	2^24 = 2^20 x 2^4
+	       1MB  x 16b
+	       16MB
+
+---
+
+No operand - uses stack
+
+Instruction : PUSH OP1
+RTN         : TOS <- M[OP1_ADDR]  \\ Top of Stack (TOS)
+
+Instruction : ADD
+RTN         : TOS <- TOS + SOS  \\ Second of Stack (SOS)
+
+Instruction : POP RES
+RTN         : M[RES_ADDR] <- TOS
+
+---
+
+Round up bytes if the instruction bits are not evenly distributed by 8
+
+---
+
+Mem vs Register
+
+Mem is bad for performane
+Reg is good for performance
+
+---
+
+Typical GPR ISA Memory Addressing Modes
+
+Register               ADD R4, R3           R4 <- R4 + R3
+Immidiate              ADD R4, #3           R4 <- R4 + 3
+Displacement           ADD R4, 10(R1)       R4 <- R4 + M[10+R1]
+Indirect               ADD R4, (R1)         R4 <- R4 + M[R1]
+Indexed                ADD R3, (R1+R2)      R3 <- R3 + M[R1+R2] 
+Absolute               ADD R1, (1001)       R1 <- R1 + M[1001]
+Mem indirect           ADD R1, @(R3)        R1 <- R1 + M[M[R3]]
+Auto increment         ADD R1, (R2)+        R1 <- R1 + M[R2] 
+                                            R2 <- R2 + D
+Auto decrement         ADD R1, -(R2)        R2 <- R2 - D
+                                            R1 <- R1 + M[R2]
+Scaled                 ADD R1, 100(R2)[R3]  R1 <- R1 + M[100+R2+R3*D]
+
+---
+
+CISC
+
+emphasizes doing more with less instructions
+example: x86
+wide variety of addressing modes
+variable-length instruction encoding
+
+Motorola 680X0      18 addressing modes 
+Intel 80386 (x86)   12 addressing modes
+
+---
+
+RISC
+
+focuses on reducing number and complexity of instructions
+motivated by reduce cpu design complexity and performance
+example: MIPS, HP PA-RISK, SPARC, Alpha, POWER, PowerPC etc.
+load-store GPR
+supports delayed branches
+fixed-length encoding
+
+PowerPC         8 addressing modes
+HP PA-RISC      7 addressing modes
+SPARC           5 addressing modes
+DEC Alpha AXP   4 addressing modes
+
+* * * * * * * * * * * * *
+
+MIPS R3000 (32-bit) * what we'll be using (RISC ISA)
+
+R  | OP | RS | RT | RD | SA | FUNCT |
+I  | OP | RS | RT |    IMMEDIATE    |
+J  | OP |        JUMP TARGET        |
+
+
+5 addressing modes
+	1. Reg direct
+	2. Immediate
+	3. Base reg + Imm offset (loads and stores)
+	4. PC Relatives
+	5. Pseudodirect (Jumps)
+
+
+Registers
+
+;--------;
+| 0 - 31 |
+;--------;
+|   PC   |
+;--------;
+|   HI   |
+;--------;
+|   LO   |
+;--------;
+
+

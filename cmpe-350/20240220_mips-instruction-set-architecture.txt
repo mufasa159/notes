@@ -1,0 +1,144 @@
+
+MIPS Instruction Set Architecture
+
+Memory is 2^32 bytes, or 2^30 words
+
+In low memory,
+
+ MSB         LSB 
+;---;---;---;---;
+|   |   |   |   |
+;---;---;---;---;
+  0   1   2   3
+
+Lowest   Highest
+Address  Address
+
+
+Words must be aligned (1 word = 4 Bytes)
+2-Byte addresses will have '00' in the end
+
+
+32 registers     each 32 bits long
+31 GPRs          R0 -> 0
+PC               program counter
+HI, LO           store multiplication of 32-bits
+
+Temporary Reg    $t0 - $t7
+Saved Reg        $s0 - $s7
+More temp reg    $t8 - $t9
+
+
+		;-----;------;------;------;------;---------;
+R-type  |  OP |  RS  |  RT  |  RD  |  SA  |  FUNCT  |    // SA is Shift Amount
+		;-----;------;------;------;------;---------;
+		  6b     5b     5b     5b     5b      6b
+         31:26  25:21  20:16 15:11   10:6    5:0
+
+        ;-----;------;------;-----------------------;
+I-type  |  OP |  RS  |  RT  |        IMMEDIATE      |    // RT acts as destination
+        ;-----;------;------;-----------------------;
+          6b     5b     5b             16b
+         31:26  25:21  20:16          15:0
+
+Load /  ;-----;------;------;-----------------------;
+Store   |  OP |  RS  |  RT  |         ADDRESS       |
+I-type  ;-----;------;------;-----------------------;
+          6b     5b     5b             16b
+         31:26  25:21  20:16          15:0
+
+        ;-----;-------------------------------------;
+J-type  |  OP |              JUMP TARGET            |
+        ;-----;-------------------------------------;
+          6b                    26b
+         31:26                 25:0   
+
+---
+
+Example 1
+g := h + A[8]
+
+LW   $t0, 32($s3)     $t0 <- M[$s3+8]
+ADD  $s0, $t0, $s1    $s0 <- $t0 + $s1
+ 
+---
+
+Procedure Steps
+
+1. Put the parameter in expected registers ($a0-$a3)
+2. Transfer control to Proc (JAL)
+3. Aquire the storage resources needed
+4. Perform the proc
+5. Put the result where the calling program can access it ($v0-$v1)
+6. Return control to the point of origin (JR)
+
+JAL - jump and link
+JR  - jump to register
+
+
+Example 1
+# int sum(a: $a0, b: $a1) {
+#   return a + b; 
+# }
+
+a = $s0
+b = $s1
+
+
+     ADD  $a0, $s0, $zero   # same as move; $a0 <- $s0
+     ADD  $a1, $s1, $zero   # same as move; $a1 <- $s1
+     JAL  sum
+
+
+sum  ADD  $v0, $a0, $a1
+     JR   $ra
+
+---
+
+To push to memory we use stack pointer (SP)
+
+let's say we have 3 values we want to store in stack,
+each one is 4 Bytes, total of (3 * 4) Bytes or 12 Bytes.
+initial stack pointer address is the total number of Bytes in stack.
+so we subtract -12 to start adding values from the bottom.
+
+
+ 4 Bytes                                      width
+;-------;  <-- Original SP count here           ↓
+|  $t1  |  For storing 3 val, we go down 3 (3 * 4 = 12 Bytes)
+;-------;    |
+|  $t0  |    |
+;-------;    |
+|  $s0  |  <-'
+;-------;
+| | | | |
+;-------;
+| | | | |
+;-------;
+| | | | |
+;-------;
+| | | | |
+;-------;
+| | | | |
+;-------;
+
+ADDI  $SP, $SP, -12   # go down the stack, doing ADDI because there's no SUBI
+
+SW    $t1, 8($SP)     # put on 1st place by adding 8 from bottom
+SW    $t0, 4($SP)     # put on 2nd place by adding 4 from bottom
+SW    $s0, 0($SP)     # put on 3rd place by adding 0 from bottom
+
+If i need to load them after that, we use the same offsets
+
+LW    $s0, 0($SP)     # retrieve from the 3rd place
+LW    $t0, 4($SP)     # retrieve from the 2nd place
+LW    $t1, 8($SP)     # retrieve from the 1st place
+
+Restore the stack pointer by adding 12 again
+
+ADDI  $SP, $SP, 12    # goes all the way to the top of stack
+
+JR    $ra             # has the PC + 4 from before the procedure executed
+
+
+

@@ -1,0 +1,135 @@
+Make 
+
+has nothing to do with C lang
+makes objects and compiles the minimum anmount.  
+rule lang not procedural, there's not order
+usually used as installers
+
+TARGET DEPENDENCIES
+binary my.c ClassErros.h
+	echo ''
+	gcc my.c -c bin
+
+based on date. if date of binary less than any of the dependencies, rules will be executed.
+Tab is a special character. do not use spaces.
+empty binary means no date, meaning it's always older than the depndencies
+
+ALL target (phony target): always build the binary/whatever is given all the time
+assumption that whenever a makefile is building a target of 
+all depends on `bin` <program> where `bin` depends on dependencies
+
+Makefie (M must be capital)
+Rule format:
+target: component
+	commands
+^ tab
+
+code.exe: code.c include.h other.obj
+	...
+other.obj: other.c include.h
+
+@ symbol
+code.exe: code.c include.h other.obj
+	@echo"compiling code"
+	gcc -std=c99...
+
+don't spill, it prints silently
+
+$@ - macro variables
+if you change code.c to code1.c it will change the gcc output to code1.c automatically.
+
+make -n: it will run as if it was gonna do something and will show you everything that it wanted to execute
+	used for debugging usually
+
+if any code returns non-zero return code, it will stop
+adding - infront of command (`- gcc` for example), it will ignore the error code.
+
+---
+
+Macros and Variables
+
+CC variable
+CC = gcc -std=c99 -Wall -O1 -pedantic -g
+echo $(CC)
+
+PROC = my
+$(PROC_O): $(PROC).c
+
+% can be used for replacing character
+
+---
+
+```
+my.o: my.c
+	gcc my.c -c
+```
+the above is equivalent as following 
+```
+c.o: 
+```
+
+$(CC)$(CFLAGS)-c $<
+flags for the compiler you may want to use
+note: `$<` means the bin name is same as what is compiled. you don't get to pick the name yourself.
+
+gcc -something-here -g my.c
+--- ------------------ 
+CC  CFLAGS             
+
+
+-lm (live math) linker flag
+-l
+
+
+%.o: %.c means any .o depends on any .c
+
+$* return the common file
+
+EX: 
+```
+SRC = my1.c my2.c
+OBJ = my1.o my2.o
+
+$(OBJ): $(SRC) -- seems reasonable but no
+
+in `my1.o my2.o my1.c my2.c`, it will compare `my1.o` to `my1.c` and `my2.c` and continue for each
+
+---
+
+conditional in make (won't do in class)
+
+ifdef variable-name
+ifndef variable-name
+
+--- 
+
+Standards
+
+make all: compile everything
+make clean: clean all executables or anything that you made from your program
+make install: 
+
+bunch of makes
+
+---
+
+makefile will be part of every lab
+
+---
+
+PHONY <target-name> = don't check for that target in hard disk
+
+---
+
+Special Macros
+
+# comments
+
+-- 
+
+all should be on top
+
+dependecy chain example: check slide.
+
+---
+
