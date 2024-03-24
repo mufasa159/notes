@@ -1,6 +1,8 @@
 
 MIPS Instruction Set Architecture
 
+MIPS32000
+
 Memory is 2^32 bytes, or 2^30 words
 
 In low memory,
@@ -11,8 +13,8 @@ In low memory,
 ;---;---;---;---;
   0   1   2   3
 
-Lowest   Highest
-Address  Address
+Lowest    Highest
+Address   Address
 
 
 Words must be aligned (1 word = 4 Bytes)
@@ -20,7 +22,7 @@ Words must be aligned (1 word = 4 Bytes)
 
 
 32 registers     each 32 bits long
-31 GPRs          R0 -> 0
+31 GPRs          R0 is always 0
 PC               program counter
 HI, LO           store multiplication of 32-bits
 
@@ -29,10 +31,10 @@ Saved Reg        $s0 - $s7
 More temp reg    $t8 - $t9
 
 
-		;-----;------;------;------;------;---------;
+		    ;-----;------;------;------;------;---------;
 R-type  |  OP |  RS  |  RT  |  RD  |  SA  |  FUNCT  |    // SA is Shift Amount
-		;-----;------;------;------;------;---------;
-		  6b     5b     5b     5b     5b      6b
+		    ;-----;------;------;------;------;---------;
+		      6b     5b     5b     5b     5b      6b
          31:26  25:21  20:16 15:11   10:6    5:0
 
         ;-----;------;------;-----------------------;

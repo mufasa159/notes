@@ -1,0 +1,138 @@
+Sound
+
+The Jazz Singer - 1927
+The Talkie era
+
+
+Problems with early sound recording
+    incredibly dull
+    camera was restricted
+    actors couldn't move
+    required synchronization
+    editing was minimal
+
+lost a lot of depth
+limited with tech, editors couldn't remove a lot of extraneous noise
+
+actors struggled with expressive gesturing
+many left the industry because couldn;t adapt
+
+Formalist vs Realists
+
+Eisentstein
+
+forces acting style to be more naturilistic
+
+sound recording
+    microphone: converts sounds waves to recorded signals
+    more digital format with flexibility for editing
+    dialogue
+    souble system recording the idea that sound is recorded in a separate medium and then
+    merge the two in editing
+
+Soudn editing
+    sound editor: 
+        overal process of the sound editing
+        works with musical composers
+    crew:
+        generating and controlling the sound
+    post production:
+        sounds effects and music added after the film is shot
+    automatic dialogue system:
+        sophisticated computerized system that allows the editor to replace dialogue with a cleaner version
+    sound mixing:
+    sound track: 
+        individual track of sound
+
+Describing film sounds
+    pitch or level: 
+        high like tire screeching, lower like thunder, frequency or speed of sound waves
+    loudness: 
+        volume and intensity, depends on amplitude
+    quality
+        texture or color
+        elements of quality: trumpet vs trumbone, not all brass instruments sound the same
+    fidelity
+        faithfulness or accuracy of the sound
+        high fidelity: sound is accurate
+        low fidelity: sound is distorted
+        example: 
+            not seeing what is being heard
+
+Diegetic sound
+    sound that comes from the world of the film
+    can be internal or external but originates from the world of the film
+    the characters in the film are aware of the sound
+
+Nondiegetic sound 
+    sound that comes from outside the world of the film
+    the characters in the film are not aware of the sound
+    music is the most common form of non-diagetic sound but not all music is non-diagetic
+
+Onscreen sound
+    sound that comes from a source that we see on screen
+    example: 
+        a character playing a guitar
+        a car horn honking
+        a dog barking
+    simultenous sound
+
+offscreen sound
+    comes from a source we can't see
+    could be diegetic or nondiegetic
+
+internal vs external
+    internal: 
+        sound that comes from inside the mind of a character
+        example: 
+            voice over
+            internal monologue
+            internal dialogue
+    external:
+        sound that comes from outside the mind of a character
+        example: 
+            dialogue
+            sound effects
+            music
+    can get muddy sometimes, like heart beat; could be internal or external
+
+Types of film sound
+    vocal sound: dialogue narration
+    environmental: sound effects
+    music
+    silence
+
+Dialogue and narration
+
+---
+
+Environmental sound
+
+ambient noise:
+    coming from the setting of the environment
+sound effects: 
+    artificially created
+foley sounds / Foley artists:
+    a unique sound created from a variety of props, created to simulate everyday sounds,
+    because somestimes it's hard to capture when filming.
+    it's a very experimental process, really creative sound people who finds sound in the most
+    unusual places
+
+music
+
+silence functions as a sound, especially when the sound is suppressed deliberatly
+
+audience expectations
+    sound guides are expectations
+    helps create emphasis
+    creates expectations
+    requires precise timing in coordination with the image
+
+rhythm
+    movie: space balls - check out
+    helps carry the momentum of the film by creating a sense of pace
+
+characterization
+
+helps guide us to where the dominant focus is
+

@@ -1,0 +1,39 @@
+Word = 4 bytes = 32 bits
+
+Instruction format:
+R-type: OP(6-bit) rs(5-bit) rt(5-bit) rd(5-bit) sa(5-bit) funct(6-bit)
+I-type: OP(6-bit) rs(5-bit) rt(5-bit) immediate(16-bit)
+J-type: OP(6-bit) address(26-bit)
+
+Registers (in csv format):
+```
+Register No.,Name,Usage
+0,$zero,Constant value 0
+1,$at,Reserved for assembler
+2-3,$v0-$v1,Values for result and expression evaluation
+4-7 ,$a0-$a3,Arguments
+8-15,$t0-$t7,Temporaries
+16-23,$s0-$s7,Saved
+24-25,$t8-$t9,More temporaries
+26-27,$k0-$k1,Reserved for operating system
+28,$gp,Global pointer
+29,$sp,Stack pointer
+30,$fp,Frame pointer
+31,$ra,Return address
+```
+
+Funct field value examples (OPCODE = 0):
+add = 32 
+sub = 34
+and = 36 
+or  = 37 
+nor = 39
+
+addi OPCODE = 8 
+andi OPCODE = 12 
+lw   OPCODE = 35 
+sw   OPCODE = 43 
+beq  OPCODE = 4 
+bne  OPCODE = 5
+j    OPCODE = 2 
+Jal  OPCODE = 3
