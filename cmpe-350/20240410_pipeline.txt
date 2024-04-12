@@ -1,0 +1,34 @@
+Pipeline
+
+Stages:
+    Instruction fetch
+    Instruction decode
+    Execute
+    Memory access
+    Write back
+
+
+Structural Hazard:
+    Two instructions need the same resource at the same time
+    When you don't have enough hardware resources to execute instructions simultaneously
+    Example: Two instructions need to access memory at the same time
+
+Data Hazard:
+    When an instruction depends on the result of a previous instruction in the pipeline
+    Example: Instruction 2 depends on the result of instruction 1
+
+    Solution:
+        Forwarding / Bypassing: 
+            Pass the result of an instruction directly to the next instruction
+        Stalling: 
+            Wait until the result of the previous instruction is available
+
+Control Hazard:
+    When the pipeline makes a wrong decision on a branch instruction
+    Example: The pipeline fetches the wrong instruction after a branch
+
+    Solution:
+        Branch prediction: 
+            Predict whether a branch will be taken or not
+        Speculative execution: 
+            Execute instructions speculatively based on the prediction

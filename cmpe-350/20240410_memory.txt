@@ -1,0 +1,33 @@
+Memory Hierarchy
+
+--------- Faster Access Time, Higher Level
+
+Registers                        // Part of on-chip CPU datapath
+Cache (L1, L2, L3, ...)          // One more level, static RAM
+Main Memory                      // Dynamic RAM (DRAM)
+Magnetic Disk                    // Virtual Memory
+Optical Disk or Magnetic Tape    // HDD, SSD
+
+--------- Slower Access Time, Lower Level
+
+Terms
+
+Temporal Locality
+    If an item is referenced, it will tend to be referenced again soon. 
+Spatial Locality
+    If an item is referenced, items whose addresses are close by will tend to be referenced soon.
+
+Cache hit
+    data is found in the cache
+Cache miss
+    data is not found in the cache and must be fetched from the main memory
+
+Directly mapped cache
+    each block of main memory maps to exactly one block in the cache
+Set associative cache
+    each block of main memory maps to a set of blocks in the cache
+Fully associative cache
+    each block of main memory maps to any block in the cache
+
+
+

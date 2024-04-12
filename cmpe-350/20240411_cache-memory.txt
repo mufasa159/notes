@@ -1,0 +1,92 @@
+Cache memory
+
+Direct mapped - simple but suffers from conflict misses
+    index = (block address) MOD (number of blocks)
+
+Set associative - most common
+    index = (block address) MOD (number of sets)
+    associativity = number of blocks per set
+
+Fully associative - very complex, least used, for small caches
+
+---
+
+1 Word = 4 Bytes
+
+                     Nominal size of cache
+Number of Blocks = -------------------------
+                        Bytes per block
+                    
+
+From byte addresses,
+remove 2 bits for the offset
+to get the word addresses (block addresses)
+
+
+Hit: found the same data while placing it in the cache
+Miss: didn't find the same data while placing it in the cache
+
+                      Word address
+Block address = ----------------------
+                 # of words per block
+
+Note: if there's 1 word per block, then BLOCK ADDRESS == WORD ADDRESS
+
+
+    ;---------------------;
+    |    block address    |
+;---;-----------;---------|--------;
+| v |    tag    |  index  | offset |
+;---;-----------|---------;--------;
+                |      data        |
+                ;------------------; 
+
+|----------- real size ------------|
+            
+
+
+Direct Mapped                  2-way Set Associative
+
+;-------;-------;--------;     ;-------;-------;--------;-------;--------;
+| block |  tag  |  data  |     | block |  tag  |  data  |  tag  |  data  |
+;-------;-------;--------;     ;-------;-------;--------;-------;--------;
+| 0     |       |        |     | 0     |       |        |       |        |
+;-------;-------;--------;     ;-------;-------;--------;-------;--------;
+| 1     |       |        |     | 1     |       |        |       |        |
+;-------;-------;--------;     ;-------;-------;--------;-------;--------;
+| 2     |       |        |
+;-------;-------;--------;
+| 3     |       |        |
+;-------;-------;--------;
+
+
+                   Number of blocks
+Number of sets = --------------------
+                    Number of ways
+
+
+
+Cache Replacement Policies
+
+Random
+    Any block is randomly selected for replacement providing uniform allocation
+    Simple to build in hardware, most widely used strategy
+
+Least Recently Used (LRU)
+    Access to blocks is recorded and the block that has been unused for the longest time is replaced
+    Full LRU is expensive to implement as it requires a lot of hardware
+    Used most often
+
+First In First Out (FIFO)
+    Because LRU can be complicated to implement, this approximates LRU by determining the oldest
+    block in the set and replacing it
+
+
+offset size = log_2(bytes per block)
+index size  = log_2(number of blocks or sets) 
+tag size    = nominal address size - (offset size + index size)
+status bits
+    direct mapped: 1 valid bit = 1 bit
+    sets associative: 1 valid bit + 2 LRU bits = 3 bits
+
+Real Cache Size = Nominal size + Number of blocks * ((tag size + status bits) / 8)
