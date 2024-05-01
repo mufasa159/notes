@@ -1,0 +1,171 @@
+Virtual Memory
+
+Main memory (DRAM)
+Mass Storage (Magnetic disks or SSD)
+
+Main memory is divided into blocks allocated to different processes in the system by the operating system.
+    - Fixed size blocks (Pages) - commonly 4k to 64k bytes
+    - Variable size blocks (Segments) - largest size from 2^16 to 2^32 bytes
+    - Paged segmentation - large variable size blocks are divided into fixed size blocks (x86, PowerPC)
+
+At any given time, only a subset of the pages are in main memory. The rest are stored on disk.
+
+Page Fault
+    - a program/code block needed for process execution and not present in main memory is called a page fault.
+    - also known as address fault.
+    - similar to cache miss in cache memory.
+
+Demand Paging
+    - the process of loading a page into main memory by the OS from disk only when it is needed.
+
+---
+
+Explanation with example:
+
+Let's say,
+    Virtual address          |---- 36 bits ----|   ->  2^36 bytes = 64 GB
+    Physical address (DRAM)  |--- 32 bits ---|     ->  2^32 bytes =  4 GB
+
+Size of the offset depends on the size of the page.
+Size of the page is the same for both virtual and physical memory.
+So, the offset size is the same for both virtual and physical memory.
+
+Page size    ->  4kB or 2^12 bytes
+Offset size  ->  log_2(2^12) or 12 bits
+
+Page numbers:
+    After calculating the offset, the rest of the address bits are used to store the page number.
+
+Virtual Page Numbers (VPN)   -> 36 - 12 = 24 bits
+Physical Page Numbers (PPN)  -> 32 - 12 = 20 bits
+
+Meaning, 
+    2^24 pages in virtual memory
+    2^20 pages in physical memory
+
+Page Table
+    A table in memory that maps virtual page numbers to physical page numbers.
+    Each entry in the page table is called a page table entry (PTE).
+    The page table is stored in main memory.
+
+      ---   ;------------------------;
+       |    ;------------------------;
+       |    ;------------------------;
+       |    ;------------------------;
+     2^24   ;-------- ...... --------;
+    entries ;------------------------;
+       |    ;------------------------;
+       |    ; PPN ?    | 0 | HDD loc ;
+       |    ;------------------------;
+       |    ; PPN      | 1 | extra   ;
+      ---   ;------------------------;
+                         ^  this bit is for indicating if there's a PPN in the entry
+
+    The table contain PPN if there is a page in main memory.
+    Otherwise, the table contain hard drive location of the page.
+    If the table contains HDD location, it will load the page from HDD to DRAM and update the table.
+
+---
+
+Example:
+
+How much space does the page table take in memory? Given,
+    Page size                    : 16kB
+    Virtual memory address       : 40 bits
+    Physical memory address      : 36 bits
+    Each entry in the page table : 5 bytes
+
+Page size 16kB -> 2^14 bytes
+Offset size    -> log_2(2^14) or 14 bits
+
+V addr bits    -> 40 bits
+VPN bits       -> 40 - 14 = 26 bits
+
+P addr bits    -> 36 bits
+PPN bits       -> 36 - 14 = 22 bits
+
+Page Table size:
+    2^(VPN bits) entries -> 2^26 entries
+    Each entry size      -> 5 bytes
+    Total size           -> 2^26 * 5 = 5 * 64 MB = 320 MB
+
+Takes 320 MB of space in main memory. operating system has the address of the page table in a register. so, every time i go 
+through my cache level and i do not find my data in cache, i ask OS to give me the address of the page table. then i go to the 
+page table and find the physical address of the data i am looking for.
+
+In case of page fault:
+    1. i miss all level of cache
+    2. i need a PPN for the data's VPN -> access memory for page table
+    3. i read the page from the hard drive into the physical memory
+    4. i read the data from the physical memory
+
+Otherwise:
+    1. i miss all level of cache
+    2. i need a PPN for the data's VPN -> access memory for page table
+    3. i access memory to fetch the data from the physical page
+
+Shortest path : no page fault
+Longest path  : page fault, requires multiple memory accesses
+
+---
+
+Performance in Virtual Memory
+1. VPN -> PPN (could be replaced with a TLB)
+2. Access PP -> data
+
+Translation look aside buffer (TLB)
+    stores VPN | PPN
+    saves a lot of time
+
+
+Performance : CPI_execution + Stall DRAM
+
+
+Example:
+
+Given,
+    Load/Store instructions    : 20% of total instructions
+    Unified cache miss rate    : 10%
+    Unified cache miss penalty : 100 cycles
+    TLB miss rate              : 1%
+    TLB miss penalty           : 50 cycles (comes from accessing the page table in DRAM)
+    CPI_execution              : 2 cycles
+
+Stalls coming from 
+    - accessing data
+    - accessing instructions
+
+Stall DRAM:
+    (cache miss rate * cache miss penalty) * (Percentage of total instruction coming from memory + Percentage of Load/Store instructions)
+
+Stall TLB:
+    Number of accesses to memory * Cache miss rate * TLB miss rate * TLB miss penalty
+
+CPI_real = CPI_execution + Stall DRAM + Stall TLB
+         = 2 + ((0.1 * 100) * (1 * 0.2)) + (1.2 * 0.1 * 0.01 * 50)
+         = 2 + ((1 * 0.1 * 100) + (0.2 * 0.1 * 100)) + (1.2 * 0.1 * 0.01 * 50)
+                 '------------'    '-------------'      '-------------------'
+                  instruction       data accesses        TLB stalls
+                  accesses to       to cache
+                  cache
+    
+         = 2 + 10 + 2 + 0.06
+         = 14.06 cycles
+              ^ very little extra time
+
+Process has a process control block (PCB) that contains the page table base register (PTBR) which points to the page table.
+
+What is the speedup thanks to the TLB? In other words, what are the stalls if every VPN -> PPN comes from page table in memory (DRAM)?
+
+With no TLB,
+CPI_real = 14 + 1.2 * 0.1 * 1 * 50
+         = 14 + 6 
+         = 20 cycles
+
+With TLB,
+CPI_real = 14.06 cycles (from above)
+
+Speedup = 20 / 14.06
+        = 1.4
+
+So, the speedup is 40% faster with TLB.

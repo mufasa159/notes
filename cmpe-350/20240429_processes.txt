@@ -1,0 +1,71 @@
+Processes
+
+Process: program in execution 
+    - aka. jobs, tasks
+
+System: collection of processes
+    - OS processes executing system code
+    - User processes executing user code
+    - CPU multiplexed among the processes
+
+Example of processes:
+    General Purpose Processes (GPP)
+        - Web browsers
+        - Text editors
+        - Email clients
+    Embedded Processes
+        - No multitasking
+        - Runs at least the OS
+
+Components of a Process
+    - Program code = text section
+    - Program counter = PC
+    - CPU registers
+    - Stack
+    - Data section
+    - Heap
+
+A program becomes a process when it is loaded into memory
+    - ex: double clicking on icon
+    - ex: typing command in shell
+
+Special type of process: Virtual Machine
+    - Example: JAVA
+    - it can emulate a different OS, different hardware, different ISA
+
+
+Process States
+    - NEW        : process is being created
+    - READY      : process is waiting to be assigned to a processor
+    - RUNNING    : instructions are being executed
+    - WAITING    : process is waiting for some event to occur
+    - TERMINATED : process has finished execution
+
+                       ,----------- interrupt ----------, ,----> exit --> TERMINATED
+                       |                                | |
+                       ↓                                | |
+NEW --> admitted --> READY --> scheduler dispatch --> RUNNING --> I/O event waiting --> WAITING
+                       ↑                                                                  |
+                       |                                                                  |
+                       '------------------ I/O or event completion -----------------------'
+
+
+Process Control Block (PCB) ***** VERY IMPORTANT
+    - represents each process in the OS (or task control block)
+    - contains all the information needed to run the process
+    - contains:
+        - process state: NEW, READY, RUNNING, WAITING, TERMINATED
+        - program counter: address of next instruction
+        - CPU registers
+        - CPU scheduling information: process priority, pointers to queues etc.
+        - memory management information: memory limits, page tables, segment tables etc.
+        - accounting information: CPU used, clock time elapsed, account numbers, process numbers etc.
+        - I/O status information: list of I/O devices allocated to the process, list of open files etc.
+
+
+CPU uses multiple processes
+GPU uses single process
+
+
+Context Switching
+    
