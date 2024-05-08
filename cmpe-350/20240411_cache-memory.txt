@@ -33,13 +33,13 @@ Block address = ----------------------
 Note: if there's 1 word per block, then BLOCK ADDRESS == WORD ADDRESS
 
 
-    ;---------------------;
-    |    block address    |
+    |--- block address ---|
+
 ;---;-----------;---------|--------;
 | v |    tag    |  index  | offset |
 ;---;-----------|---------;--------;
-                |      data        |
-                ;------------------; 
+
+                |----- data -------|
 
 |----------- real size ------------|
             
